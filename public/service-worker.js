@@ -1,5 +1,5 @@
 // Uncomment the lines below
-
+console.log("service workers of the World, Unite!")
 const CACHE_NAME = "static-cache-v2";
 const DATA_CACHE_NAME = "data-cache-v1";
 
