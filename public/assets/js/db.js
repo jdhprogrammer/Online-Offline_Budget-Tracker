@@ -31,6 +31,7 @@ function saveRecord(record) {
     const transaction = db.transaction(["pending"], "readwrite");
     const budgetStore = transaction.objectStore("pending");
     budgetStore.add(record)
+    console.log("Not connected to the Internet, Will Save data until you reconnect")
 }
 
 function checkDatabase() {
