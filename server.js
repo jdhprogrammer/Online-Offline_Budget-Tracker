@@ -23,8 +23,7 @@ mongoose.connect(
             useUnifiedTopology: true,
             useCreateIndex: true,
             useFindAndModify: false
-        })
-    .then(() => {
+        }).then(() => {
         //Setup Server after connecting to db
         app.listen(PORT, () => {
             console.log(`listening on PORT ${PORT}, http://localhost:${PORT}`);
