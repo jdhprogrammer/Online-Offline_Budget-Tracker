@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+    <meta name="Description" content="A Budget Tracker application. User adds budget
+          transactions both debits and credits. Will save data if user loses network 
+          connection. Saves data to a remote Database.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -22,26 +25,40 @@
         </div>
 
         <div class="form">
-            <input type="text" id="t-name" placeholder="Name of transaction" />
-            <input type="number" min="0" id="t-amount" placeholder="Transaction amount" />
-            <button id="add-btn"><i class="fa fa-plus buttons"></i> Add Funds</button>
-            <button id="sub-btn"><i class="fa fa-minus"></i> Subtract Funds</button>
-            <p class="error"></p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <label for="t-name">New Transaction</label>
+
+                        <input type="text" name="t-name" id="t-name" placeholder="enter name..." />
+                    </div>
+                    <div class="col-4">
+                        <label for="t-amount">Transaction Amount</label>
+
+                        <input type="number" name="t-amount" min="0" id="t-amount" placeholder="enter amount..." />
+                    </div>
+                    <div class="col-4">
+                        <button id="add-btn"><i class="fa fa-plus buttons"></i> Add Funds</button>
+                        <button id="sub-btn"><i class="fa fa-minus"></i> Subtract Funds</button>
+                    </div>
+                </div>
+                <p class="error"></p>
+            </div>
+
+            <div class="transactions">
+                <table>
+                    <thead>
+                        <th>Transaction</th>
+                        <th>Amount</th>
+                    </thead>
+                    <tbody id="tbody">
+
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-        <div class="transactions">
-            <table>
-                <thead>
-                    <th>Transaction</th>
-                    <th>Amount</th>
-                </thead>
-                <tbody id="tbody">
-
-                </tbody>
-            </table>
-        </div>
-
-        <canvas id="myChart"></canvas>
+    </div>
+    <canvas id="myChart"></canvas>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -51,7 +68,7 @@
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", () => {
                 navigator.serviceWorker.register("service-worker.js").then(reg => {
-                    console.log("Caution Service Workers Ahead, Slow Down!", reg);
+                    console.log("Service Workers ahead... use Caution!", reg);
                 });
             });
         }
