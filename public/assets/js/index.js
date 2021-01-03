@@ -35,9 +35,9 @@ function populateTable() {
         let tr = document.createElement("tr");
 
         if (parseInt(tValue) < 0) {
-            tr.className = "pos";
-        } else if (parseInt(tValue) < 0) {
             tr.className = "neg";
+        } else if (parseInt(tValue) > 0) {
+            tr.className = "pos";
         } else {
             tr.ClassName = "neut";
         }
