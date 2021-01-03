@@ -31,7 +31,17 @@ function populateTable() {
 
     transactions.forEach(transaction => {
         // create and populate a table row
+        let tValue = parseInt(transaction.value)
         let tr = document.createElement("tr");
+
+        if (parseInt(tValue) < 0) {
+            tr.className = "pos";
+        } else if (parseInt(tValue) < 0) {
+            tr.className = "neg";
+        } else {
+            tr.ClassName = "neut";
+        }
+
         tr.innerHTML = `
       <td>${transaction.name}</td>
       <td>${transaction.value}</td>
