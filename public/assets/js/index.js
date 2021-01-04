@@ -49,11 +49,10 @@ function populateTable() {
         } else {
             tr.ClassName = "neut";
             tr.innerHTML = `
-  <td class="neutTd">${transaction.name}</td>
-  <td class="neutTd">${transaction.value}</td>
-`;
+    <td class="neutTd">${transaction.name}</td>
+    <td class="neutTd">${transaction.value}</td>
+    `;
         }
-
 
         tbody.appendChild(tr);
     });
