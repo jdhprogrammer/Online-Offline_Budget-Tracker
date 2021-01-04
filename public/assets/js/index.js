@@ -36,16 +36,24 @@ function populateTable() {
 
         if (parseInt(tValue) < 0) {
             tr.className = "neg";
+            tr.innerHTML = `
+          <td class="negTd">${transaction.name}</td>
+          <td class="negTd">${transaction.value}</td>
+        `;
         } else if (parseInt(tValue) > 0) {
             tr.className = "pos";
+            tr.innerHTML = `
+      <td class="posTd">${transaction.name}</td>
+      <td class="posTd">${transaction.value}</td>
+    `;
         } else {
             tr.ClassName = "neut";
+            tr.innerHTML = `
+  <td class="neutTd">${transaction.name}</td>
+  <td class="neutTd">${transaction.value}</td>
+`;
         }
 
-        tr.innerHTML = `
-      <td>${transaction.name}</td>
-      <td>${transaction.value}</td>
-    `;
 
         tbody.appendChild(tr);
     });
