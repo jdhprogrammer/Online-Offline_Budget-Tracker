@@ -10,17 +10,18 @@ const FILES_TO_CACHE = [
     '/assets/css/styles.css',
     '/dist/index.bundle.js',
     '/dist/another.bundle.js',
-    '/dist/icon_16x16.png',
-    '/dist/icon_32x32.png',
-    '/dist/icon_72x72.png',
-    '/dist/icon_96x96.png',
-    '/dist/icon_128x128.png',
-    '/dist/icon_144x144.png',
-    '/dist/icon_152x152.png',
-    '/dist/icon_192x192.png',
-    '/dist/icon_384x384.png',
-    '/dist/icon_512x512.png',
-    '/dist/manifest.json'
+    '/dist/assets/icons/icon_16x16.png',
+    '/dist/assets/icons/icon_32x32.png',
+    '/dist/assets/icons/icon_72x72.png',
+    '/dist/assets/icons/icon_96x96.png',
+    '/dist/assets/icons/icon_128x128.png',
+    '/dist/assets/icons/icon_144x144.png',
+    '/dist/assets/icons/icon_152x152.png',
+    '/dist/assets/icons/icon_192x192.png',
+    '/dist/assets/icons/icon_384x384.png',
+    '/dist/assets/icons/icon_512x512.png',
+    '/dist/manifest.json',
+    'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
     // '/dist/index.bundle.js.LICENSE.txt'
 ];
 

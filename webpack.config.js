@@ -15,28 +15,29 @@ const config = {
         path: __dirname + "/public/dist",
         filename: '[name].bundle.js'
     },
-    mode: "production",
-    plugins: [
-        new WebpackPwaManifest({
-            filename: "manifest.json",
-            name: "Budget Tracker",
-            short_name: "Budget App",
-            description: 'PWA for Tracking your Budget, including income and expenses.',
-            fingerprints: false,
-            inject: false,
-            start_url: "/",
-            display: "standalone",
-            theme_color: "#ffffff",
-            background_color: '#ffffff',
-            crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
-            icons: [{
-                    src: path.resolve("./public/assets/images/icons/android-chrome-512x512.png"),
-                    sizes: [16, 32, 72, 96, 128, 144, 152, 192, 384, 512] // multiple sizes
-                }
+    // mode: "production",
+    // plugins: [
+    //     new WebpackPwaManifest({
+    //         filename: "manifest.json",
+    //         name: "Budget Tracker",
+    //         short_name: "Budget App",
+    //         description: 'PWA for Tracking your Budget, including income and expenses.',
+    //         fingerprints: false,
+    //         inject: false,
+    //         start_url: "/",
+    //         display: "standalone",
+    //         theme_color: "#ffffff",
+    //         background_color: '#ffffff',
+    //         crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
+    //         icons: [{
+    //                 src: path.resolve("public/assets/images/icons/android-chrome-512x512.png"),
+    //                 sizes: [16, 32, 72, 96, 128, 144, 152, 192, 384, 512], // multiple sizes
+    //                 destination: path.join("assets", "icons")
+    //             }
 
-            ]
-        })
-    ]
+    //         ]
+    //     })
+    // ]
 };
 
 module.exports = config;
