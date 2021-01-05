@@ -5,15 +5,23 @@ const FILES_TO_CACHE = [
     '/',
     '/index.html',
     '/favicon.ico',
-    '/manifest.webmanifest',
     '/assets/js/db.js',
     '/assets/js/index.js',
     '/assets/css/styles.css',
-    '/assets/images/icons/favicon-16x16.png',
-    '/assets/images/icons/favicon-32x32.png',
-    '/assets/images/icons/apple-touch-icon.png',
-    '/assets/images/icons/android-chrome-192x192.png',
-    '/assets/images/icons/android-chrome-512x512.png'
+    '/dist/index.bundle.js',
+    '/dist/another.bundle.js',
+    '/dist/icon_16x16.png',
+    '/dist/icon_32x32.png',
+    '/dist/icon_72x72.png',
+    '/dist/icon_96x96.png',
+    '/dist/icon_128x128.png',
+    '/dist/icon_144x144.png',
+    '/dist/icon_152x152.png',
+    '/dist/icon_192x192.png',
+    '/dist/icon_384x384.png',
+    '/dist/icon_512x512.png',
+    '/dist/manifest.json'
+    // '/dist/index.bundle.js.LICENSE.txt'
 ];
 
 const CACHE_NAME = "static-cache-v2";

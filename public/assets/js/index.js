@@ -1,3 +1,5 @@
+const Chart = require("chart.js");
+
 let transactions = [];
 let myChart;
 
@@ -167,3 +169,277 @@ document.querySelector("#add-btn").onclick = function() {
 document.querySelector("#sub-btn").onclick = function() {
     sendTransaction(false);
 };
+
+
+
+function generatePalette() {
+    const arr = [
+        '#003f5c',
+        '#2f4b7c',
+        '#665191',
+        '#a05195',
+        '#d45087',
+        '#f95d6a',
+        '#ff7c43',
+        '#f4ab2e',
+        '#eeca14',
+        '#fbfb5f',
+        '#665191',
+        '#a05195',
+        '#d45087',
+        '#f95d6a',
+        '#ff7c43',
+        '#000226',
+    ];
+
+    return arr;
+}
+
+function populateChart2(data) {
+    let balance = transactions.reduce((balance, t) => {
+        return balance + parseInt(t.value);
+    }, 0);
+
+    let debitLabels = [];
+    let debits = [];
+    let creditLabels = [];
+    let credits = [];
+    let neutLabels = [];
+    let neuts = [];
+
+    const colors = generatePalette();
+
+    transactions.forEach(transaction => {
+        // create and populate a table row
+        let tValue = parseInt(transaction.value);
+        let tName = transaction.name;
+
+        if (parseInt(tValue) < 0) {
+            creditLabels.push(tName);
+            credits.push(tValue);
+
+        } else if (parseInt(tValue) > 0) {
+            debitLabels.push(tName);
+            debits.push(tValue);
+
+        } else {
+            neutLabels.push(tName);
+            neuts.push(tValue);
+        }
+    })
+
+    let line = document.querySelector('#canvas1').getContext('2d');
+    let bar = document.querySelector('#canvas2').getContext('2d');
+    let pie = document.querySelector('#canvas3').getContext('2d');
+    let pie2 = document.querySelector('#canvas4').getContext('2d');
+
+    const daysOfWeek = [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+    ];
+
+    // const labels = data.map(({ day }) => {
+    //     const date = new Date(day);
+    //     return daysOfWeek[date.getDay()];
+    // });
+
+    let reversed = transactions.slice().reverse();
+    let sum = 0;
+
+    // create date labels for chart
+    let dateLabels = reversed.map(t => {
+        let date = new Date(t.date);
+        return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+    });
+
+    // create incremental values for chart
+    let data2 = reversed.map(t => {
+        sum += parseInt(t.value);
+        return sum;
+    });
+
+    // remove old chart if it exists
+    if (myChart) {
+        myChart.destroy();
+    }
+
+
+    let lineChart = new Chart(line, {
+        type: 'line',
+        data: {
+            dateLabels,
+            datasets: [{
+                label: 'Budget Balance',
+                backgroundColor: 'limegreen',
+                borderColor: 'limegreen',
+                data: data2,
+                fill: false,
+            }, ],
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                    },
+                }, ],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                    },
+                }, ],
+            },
+        },
+    });
+
+    let barChart = new Chart(bar, {
+        type: 'bar',
+        data: {
+            dateLabels,
+            datasets: [{
+                label: 'Expenses',
+                data: credits,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1,
+            }, ],
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Expenses Paid',
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                    },
+                }, ],
+            },
+        },
+    });
+
+    let pieChart = new Chart(pie, {
+        type: 'pie',
+        data: {
+            labels: debitLabels,
+            datasets: [{
+                label: 'Income Earned',
+                backgroundColor: colors,
+                data: debits,
+            }, ],
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Income Earned',
+            },
+        },
+    });
+
+    let donutChart = new Chart(pie2, {
+        type: 'doughnut',
+        data: {
+            labels: creditLabels,
+            datasets: [{
+                label: 'Expenses Paid',
+                backgroundColor: colors,
+                data: credits,
+            }, ],
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Expenses Paid',
+            },
+        },
+    });
+}
+
+// function calculateTotalWeight(data) {
+//     // let total = transactions.reduce((total, t) => {
+//     //     return total + parseInt(t.value);
+//     // }, 0);
+
+//     // let totalEl = document.querySelector("#total");
+//     // totalEl.textContent = total;
+
+//     let totals = [];
+
+//     data.forEach((workout) => {
+//         const workoutTotal = workout.exercises.reduce((total, { type, weight }) => {
+//             if (type === 'resistance') {
+//                 return total + weight;
+//             } else {
+//                 return total;
+//             }
+//         }, 0);
+
+//         totals.push(workoutTotal);
+//     });
+
+//     return totals;
+// }
+
+function transactionNames(data) {
+    let transactions = [];
+
+    data.forEach((transaction) => {
+        transactions.push(transaction.name);
+    });
+
+    // return de-duplicated array with JavaScript `Set` object
+    return [...new Set(transactions)];
+}
+
+// get all workout data from back-end
+API.getWorkoutsInRange().then(populateChart2);

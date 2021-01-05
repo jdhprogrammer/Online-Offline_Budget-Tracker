@@ -9,13 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#317EFB">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="shortcut icon" href="icons/icon-192x192.png" type="image/x-icon">
 
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="./assets/css/styles.css">
-    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="manifest" href="./dist/manifest.json">
 
     <title>Budget Tracker</title>
+
 </head>
 
 <body>
@@ -63,10 +65,29 @@
     </div>
     <canvas id="myChart"></canvas>
     </div>
+    <div class="container mt">
+        <h1 class="text-center">Budget Dashboard</h1>
+        <div class="row mt">
+            <div class="col-md-6">
+                <canvas id="canvas1"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="canvas2"></canvas>
+            </div>
+        </div>
+        <div class="row mt">
+            <div class="col-md-6">
+                <canvas id="canvas3"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="canvas4"></canvas>
+            </div>
+        </div>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script src="./assets/js/db.js"></script>
-    <script src="./assets/js/index.js"></script>
+    <script src="./dist/index.bundle.js"></script>
+    <script src="./dist/another.bundle.js"></script>
+    <!-- <script src="./assets/js/index.js"></script> -->
     <script>
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", () => {
