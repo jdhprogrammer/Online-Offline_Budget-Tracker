@@ -442,4 +442,4 @@ function transactionNames(data) {
 }
 
 // get all workout data from back-end
-API.getWorkoutsInRange().then(populateChart2);
+// API.getWorkoutsInRange().then(populateChart2);
