@@ -1,4 +1,4 @@
-const Chart = require("chart.js");
+// import Chart from "chart.js";
 
 let transactions = [];
 let myChart;
@@ -15,6 +15,7 @@ fetch("/api/transaction")
         populateTotal();
         populateTable();
         populateChart();
+        populateChart2();
     });
 
 function populateTotal() {
@@ -130,6 +131,7 @@ function sendTransaction(isAdding) {
     populateChart();
     populateTable();
     populateTotal();
+    populateChart2();
 
     // also send to server
     fetch("/api/transaction", {
@@ -195,7 +197,7 @@ function generatePalette() {
     return arr;
 }
 
-function populateChart2(data) {
+function populateChart2() {
     let balance = transactions.reduce((balance, t) => {
         return balance + parseInt(t.value);
     }, 0);
@@ -262,11 +264,6 @@ function populateChart2(data) {
         sum += parseInt(t.value);
         return sum;
     });
-
-    // remove old chart if it exists
-    if (myChart) {
-        myChart.destroy();
-    }
 
 
     let lineChart = new Chart(line, {
@@ -441,5 +438,4 @@ function transactionNames(data) {
     return [...new Set(transactions)];
 }
 
-// get all workout data from back-end
-// API.getWorkoutsInRange().then(populateChart2);
+populateChart2(transactions);
