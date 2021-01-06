@@ -5,9 +5,9 @@
     "main": "server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "prestart": "npm run webpack",
+        // "prestart": "npm run webpack",
         "start": "node server.js",
-        "webpack": "webpack",
+        // "webpack": "webpack",
         "lite-server": "lite-server",
         "seed": "node seeders/seed.js"
     },
@@ -30,8 +30,8 @@
         "morgan": "^1.9.1"
     },
     "devDependencies": {
-        "webpack": "^5.11.1",
-        "webpack-cli": "^4.3.1",
-        "webpack-pwa-manifest": "^4.3.0"
+        // "webpack": "^5.11.1",
+        // "webpack-cli": "^4.3.1",
+        // "webpack-pwa-manifest": "^4.3.0"
     }
 }

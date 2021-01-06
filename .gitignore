@@ -109,3 +109,5 @@ test-charts.js
 expenseChart.js
 
 manifest.webmanifest
+
+webpack.config.js
