@@ -14,7 +14,7 @@ fetch("/api/transaction")
 
         populateTotal();
         populateTable();
-        populateChart();
+        //populateChart();
         populateChart2();
     });
 
@@ -61,43 +61,43 @@ function populateTable() {
     });
 }
 
-function populateChart() {
-    // copy array and reverse it
-    let reversed = transactions.slice().reverse();
-    let sum = 0;
+// function //populateChart() {
+//     // copy array and reverse it
+//     let reversed = transactions.slice().reverse();
+//     let sum = 0;
 
-    // create date labels for chart
-    let labels = reversed.map(t => {
-        let date = new Date(t.date);
-        return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-    });
+//     // create date labels for chart
+//     let labels = reversed.map(t => {
+//         let date = new Date(t.date);
+//         return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+//     });
 
-    // create incremental values for chart
-    let data = reversed.map(t => {
-        sum += parseInt(t.value);
-        return sum;
-    });
+//     // create incremental values for chart
+//     let data = reversed.map(t => {
+//         sum += parseInt(t.value);
+//         return sum;
+//     });
 
-    // remove old chart if it exists
-    if (myChart) {
-        myChart.destroy();
-    }
+//     // remove old chart if it exists
+//     if (myChart) {
+//         myChart.destroy();
+//     }
 
-    let ctx = document.getElementById("myChart").getContext("2d");
+//     let ctx = document.getElementById("myChart").getContext("2d");
 
-    myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels,
-            datasets: [{
-                label: "Total Over Time",
-                fill: true,
-                backgroundColor: "#6666ff",
-                data
-            }]
-        }
-    });
-}
+//     myChart = new Chart(ctx, {
+//         type: 'line',
+//         data: {
+//             labels,
+//             datasets: [{
+//                 label: "Total Over Time",
+//                 fill: true,
+//                 backgroundColor: "#6666ff",
+//                 data
+//             }]
+//         }
+//     });
+// }
 
 function sendTransaction(isAdding) {
     let nameEl = document.querySelector("#t-name");
@@ -128,7 +128,7 @@ function sendTransaction(isAdding) {
     transactions.unshift(transaction);
 
     // re-run logic to populate ui with new record
-    populateChart();
+    //populateChart();
     populateTable();
     populateTotal();
     populateChart2();
@@ -198,9 +198,9 @@ function generatePalette() {
 }
 
 function populateChart2() {
-    let balance = transactions.reduce((balance, t) => {
-        return balance + parseInt(t.value);
-    }, 0);
+    // let balance = transactions.reduce((balance, t) => {
+    //     return balance + parseInt(t.value);
+    // }, 0);
 
     let debitLabels = [];
     let debits = [];
@@ -208,6 +208,8 @@ function populateChart2() {
     let credits = [];
     let neutLabels = [];
     let neuts = [];
+    let allLabels = [];
+    let all = [];
 
     const colors = generatePalette();
 
@@ -219,14 +221,20 @@ function populateChart2() {
         if (parseInt(tValue) < 0) {
             creditLabels.push(tName);
             credits.push(tValue);
+            allLabels.push(tName);
+            all.push(tValue);
 
         } else if (parseInt(tValue) > 0) {
             debitLabels.push(tName);
             debits.push(tValue);
+            allLabels.push(tName);
+            all.push(tValue);
 
         } else {
             neutLabels.push(tName);
             neuts.push(tValue);
+            allLabels.push(tName);
+            all.push(tValue);
         }
     })
 
@@ -245,22 +253,22 @@ function populateChart2() {
         'Saturday',
     ];
 
-    // const labels = data.map(({ day }) => {
+
+    let reversed2 = transactions.slice().reverse();
+    let sum = 0;
+
+    // const dateLabels = reversed.map(({ day }) => {
     //     const date = new Date(day);
     //     return daysOfWeek[date.getDay()];
     // });
-
-    let reversed = transactions.slice().reverse();
-    let sum = 0;
-
     // create date labels for chart
-    let dateLabels = reversed.map(t => {
+    let dateLabels = reversed2.map(t => {
         let date = new Date(t.date);
         return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
     });
 
     // create incremental values for chart
-    let data2 = reversed.map(t => {
+    let data2 = reversed2.map(t => {
         sum += parseInt(t.value);
         return sum;
     });
@@ -269,13 +277,52 @@ function populateChart2() {
     let lineChart = new Chart(line, {
         type: 'line',
         data: {
-            dateLabels,
+            labels: dateLabels,
             datasets: [{
                 label: 'Budget Balance',
-                backgroundColor: 'limegreen',
-                borderColor: 'limegreen',
-                data: data2,
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1,
                 fill: false,
+                data: data2
             }, ],
         },
         options: {
@@ -303,10 +350,10 @@ function populateChart2() {
     let barChart = new Chart(bar, {
         type: 'bar',
         data: {
-            dateLabels,
+            labels: allLabels,
             datasets: [{
-                label: 'Expenses',
-                data: credits,
+                label: 'Transactions',
+                data: all,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
