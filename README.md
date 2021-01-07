@@ -10,7 +10,7 @@ Email: jdh.programmer@gmail.com
 GitHub: https://github.com/jdhprogrammer  
 LinkedIn: https://www.linkedin.com/in/jdhprogrammer/
 
-Project Repository: [https://github.com/jdhprogrammer/Online-Offline_Budget-Tracker](https://github.com/jdhprogrammer/Online-Offline_Budget-Tracker)  
+Project Repository: [https://github.com/jdhprogrammer/PWA-Webpack-IndexDB_Budget-Tracker](https://github.com/jdhprogrammer/PWA-Webpack-IndexDB_Budget-Tracker)  
 <br>
 Project Deployment: [https://jdhprogrammer-budget-tracker.herokuapp.com/](https://jdhprogrammer-budget-tracker.herokuapp.com/)<br>
 
@@ -157,7 +157,7 @@ Distributed under the [MIT](https://choosealicense.com/licenses/mit/). See LICEN
 
 David Harris - jdh.programmer@gmail.com
 
-Project Link: [https://github.com/jdhprogrammer/Online-Offline_Budget-Tracker](https://github.com/jdhprogrammer/Online-Offline_Budget-Tracker)
+Project Link: [https://github.com/jdhprogrammer/PWA-Webpack-IndexDB_Budget-Tracker](https://github.com/jdhprogrammer/PWA-Webpack-IndexDB_Budget-Tracker)
 
 <br>
 
